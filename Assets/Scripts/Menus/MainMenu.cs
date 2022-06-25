@@ -2,7 +2,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Channel3.RetroRaid.MainMenu
+namespace Channel3.RetroRaid.Menus
 {
     public class MainMenu : MonoBehaviour
     {

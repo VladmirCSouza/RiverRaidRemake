@@ -115,7 +115,12 @@ PrefabInstance:
     - target: {fileID: 4010729617542626044, guid: e940a84dce9f5724dabe524f9d75af79,
         type: 3}
       propertyPath: m_Name
-      value: Empty 1
+      value: Easy00
+      objectReference: {fileID: 0}
+    - target: {fileID: 4010729617542626044, guid: e940a84dce9f5724dabe524f9d75af79,
+        type: 3}
+      propertyPath: m_TagString
+      value: wall
       objectReference: {fileID: 0}
     - target: {fileID: 4859624913689227542, guid: e940a84dce9f5724dabe524f9d75af79,
         type: 3}

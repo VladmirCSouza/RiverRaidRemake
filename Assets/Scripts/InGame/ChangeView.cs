@@ -1,7 +1,8 @@
+using System;
 using UnityEngine;
 using System.Collections;
 
-namespace Channel3.RetroRaid.CameraControl
+namespace Channel3.RetroRaid.InGame
 {
 	public class ChangeView : MonoBehaviour
 	{
@@ -26,7 +27,10 @@ namespace Channel3.RetroRaid.CameraControl
 		{
 			if(Input.GetKeyDown(KeyCode.C))
 				classicView = !classicView;
-			
+		}
+
+		private void FixedUpdate()
+		{
 			ChangeCameraView();
 		}
 
