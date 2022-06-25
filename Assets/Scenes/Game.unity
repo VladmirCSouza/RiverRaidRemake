@@ -577,9 +577,9 @@ MonoBehaviour:
   - {fileID: 8187446595711294030, guid: ecd5a548baa26244492e97549cc6976b, type: 3}
   - {fileID: 4799140340982519956, guid: a39f97344f8f1024e877dcff8e074fc4, type: 3}
   blockInstanceLimit: 6
-  blockMoveSpeed: 40
-  maxVertSpeedMult: 0.3
-  minVertSpeedMult: 0.25
+  defaultBLockSpeed: 40
+  maxVertSpeedMult: 0.5
+  minVertSpeedMult: 0.7
 --- !u!1001 &1684359486
 PrefabInstance:
   m_ObjectHideFlags: 0

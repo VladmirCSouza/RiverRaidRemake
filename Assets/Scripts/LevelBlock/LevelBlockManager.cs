@@ -22,13 +22,15 @@ namespace Channel3.RetroRaid.LevelBlock
         [SerializeField] private int blockInstanceLimit = 5;
         
         [Space]
-        [SerializeField] private float defaultBlkMoveSpeed = 40f;
+        [SerializeField] private float defaultBLockSpeed = 40f;
         [Range(0.1f, 1f)][SerializeField] private float maxVertSpeedMult = 0.3f;
         [Range(0.1f, 1f)][SerializeField] private float minVertSpeedMult = 0.25f;
         
         private List<Rigidbody> currentBlocks = new(10);
         private float currentBlkMovingSpeed;
         private bool isMoving = false;
+
+        public float DefaultBlockSpeed => defaultBLockSpeed;
 
         void Start()
         {
@@ -40,7 +42,7 @@ namespace Channel3.RetroRaid.LevelBlock
             startBlock.transform.position = Vector3.zero;
             startBlock.gameObject.SetActive(true);
             checkpointBlock.gameObject.SetActive(false);
-            currentBlkMovingSpeed = defaultBlkMoveSpeed;
+            currentBlkMovingSpeed = defaultBLockSpeed;
             
             currentBlocks.Add(startBlock);
 
@@ -90,7 +92,7 @@ namespace Channel3.RetroRaid.LevelBlock
             if(!isMoving)
                 return;
 
-            currentBlkMovingSpeed = (1f + maxVertSpeedMult) * defaultBlkMoveSpeed;
+            currentBlkMovingSpeed = (1f + maxVertSpeedMult) * defaultBLockSpeed;
         }
 
         public void SpeedDownBlocks()
@@ -98,7 +100,7 @@ namespace Channel3.RetroRaid.LevelBlock
             if(!isMoving)
                 return;
             
-            currentBlkMovingSpeed = (1f - minVertSpeedMult) * defaultBlkMoveSpeed;
+            currentBlkMovingSpeed = (1f - minVertSpeedMult) * defaultBLockSpeed;
         }
 
         public void SetDefaultBlockSpeed()
@@ -106,7 +108,7 @@ namespace Channel3.RetroRaid.LevelBlock
             if (!isMoving)
                 currentBlkMovingSpeed = 0;
             else
-                currentBlkMovingSpeed = defaultBlkMoveSpeed;
+                currentBlkMovingSpeed = defaultBLockSpeed;
         }
 
         public void StopMoving()

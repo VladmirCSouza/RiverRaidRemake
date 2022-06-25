@@ -6,9 +6,11 @@ namespace Channel3.RetroRaid.Player
 {
     public class PlayerController : MonoBehaviour
     {
-        [SerializeField] private float fuelLeft = 1000;
-        [Space][SerializeField] private float hSpeed = 10f;
-        [SerializeField] private GameObject explosion;
+        [Space, SerializeField] private float hSpeed = 10f;
+        [Space, SerializeField] private GameObject explosion;
+        [SerializeField] private Transform gunPoint;
+        [SerializeField] private Rigidbody bulletPrefab;
+        [Range(0.1f, 1f)][SerializeField] private float bulletSpeedPerc = 0.6f;
         
         private Rigidbody rb;
         private float currentSpeed;
@@ -20,6 +22,9 @@ namespace Channel3.RetroRaid.Player
 
         private void Update()
         {
+            if(Input.GetKeyDown(KeyCode.Space))
+                Shoot();
+            
             UpdateHorizontalSpeed();
             UpdateVerticalSpeed();
         }
@@ -49,6 +54,13 @@ namespace Channel3.RetroRaid.Player
         private void Move()
         {
             rb.velocity = new Vector3(currentSpeed, 0, 0);
+        }
+
+        private void Shoot()
+        {
+            var bullet = Instantiate(bulletPrefab, gunPoint.position, Quaternion.identity);
+            float bulletSpeed = (1f + bulletSpeedPerc) * LevelBlockManager.Instance.DefaultBlockSpeed;
+            bullet.velocity = Vector3.forward * bulletSpeed;
         }
 
         private void OnCollisionEnter(Collision collision)
