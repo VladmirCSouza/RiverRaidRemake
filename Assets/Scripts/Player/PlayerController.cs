@@ -7,12 +7,8 @@ namespace Channel3.RetroRaid.Player
     public class PlayerController : MonoBehaviour
     {
         [SerializeField] private float fuelLeft = 1000;
-        
-        [Space]
-        [SerializeField] private float hSpeed = 10f;
-
-        [SerializeField]
-        private GameObject explosion;
+        [Space][SerializeField] private float hSpeed = 10f;
+        [SerializeField] private GameObject explosion;
         
         private Rigidbody rb;
         private float currentSpeed;
@@ -24,18 +20,35 @@ namespace Channel3.RetroRaid.Player
 
         private void Update()
         {
-            float h = Input.GetAxis("Horizontal");
-            currentSpeed = hSpeed * h;
+            UpdateHorizontalSpeed();
+            UpdateVerticalSpeed();
         }
 
         private void FixedUpdate()
         {
-            Move(currentSpeed);
+            Move();
         }
 
-        private void Move(float speed)
+        private void UpdateHorizontalSpeed()
         {
-            rb.velocity = new Vector3(speed, 0, 0);
+            currentSpeed = hSpeed * Input.GetAxis("Horizontal");
+        }
+
+        private void UpdateVerticalSpeed()
+        {
+            float v = Input.GetAxisRaw("Vertical");
+            
+            if(v > 0)
+                LevelBlockManager.Instance.SpeedUpBLocks();
+            else if(v < 0)
+                LevelBlockManager.Instance.SpeedDownBlocks();
+            else
+                LevelBlockManager.Instance.SetDefaultBlockSpeed();
+        }
+
+        private void Move()
+        {
+            rb.velocity = new Vector3(currentSpeed, 0, 0);
         }
 
         private void OnCollisionEnter(Collision collision)
