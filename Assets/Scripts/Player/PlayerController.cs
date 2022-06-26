@@ -24,6 +24,10 @@ namespace Channel3.RetroRaid.Player
 
         private void Update()
         {
+            //TODO: Trocar pelo GameManager.Instance.Paused quando fizer
+            if(!LevelBlockManager.Instance.IsMoving)
+                return;
+            
             if(Input.GetKeyDown(KeyCode.Space))
                 Shoot();
             

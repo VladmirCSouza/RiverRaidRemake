@@ -39,7 +39,6 @@ namespace Channel3.RetroRaid.Player
         
         private void OnCollisionEnter(Collision collision)
         {
-            Debug.Log(collision.gameObject.tag);
             switch (collision.gameObject.tag)
             {
                 case "wall":

@@ -31,6 +31,7 @@ namespace Channel3.RetroRaid.LevelBlock
         private bool isMoving = false;
 
         public float DefaultBlockSpeed => defaultBLockSpeed;
+        public bool IsMoving => isMoving;
 
         void Start()
         {
