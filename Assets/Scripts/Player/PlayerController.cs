@@ -6,8 +6,10 @@ namespace Channel3.RetroRaid.Player
 {
     public class PlayerController : MonoBehaviour
     {
-        [Space, SerializeField] private float hSpeed = 10f;
-        [Space, SerializeField] private GameObject explosion;
+        [SerializeField] private float maxFuel;
+        [SerializeField] private float hSpeed = 10f;
+        [Space]
+        [SerializeField] private GameObject explosion;
         [SerializeField] private Transform gunPoint;
         [SerializeField] private Rigidbody bulletPrefab;
         [Range(0.1f, 1f)][SerializeField] private float bulletSpeedPerc = 0.6f;
