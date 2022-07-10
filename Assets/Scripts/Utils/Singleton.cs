@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace JAD.Utils
+namespace Channel3.Utils
 {
     public class Singleton<T> : MonoBehaviour where T : Component
     {

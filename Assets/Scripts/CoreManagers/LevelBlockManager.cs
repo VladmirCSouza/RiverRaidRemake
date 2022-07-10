@@ -1,10 +1,9 @@
-using System;
 using System.Collections.Generic;
-using JAD.Utils;
+using Channel3.Utils;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Channel3.RetroRaid.LevelBlock
+namespace Channel3.CoreManagers
 {
     public class LevelBlockManager : Singleton<LevelBlockManager>
     {
@@ -21,18 +20,8 @@ namespace Channel3.RetroRaid.LevelBlock
         [Space]
         [SerializeField] private int blockInstanceLimit = 5;
         
-        [Space]
-        [SerializeField] private float defaultBLockSpeed = 40f;
-        [Range(0.1f, 1f)][SerializeField] private float maxVertSpeedMult = 0.3f;
-        [Range(0.1f, 1f)][SerializeField] private float minVertSpeedMult = 0.25f;
-        
         private List<Rigidbody> currentBlocks = new(10);
-        private float currentBlkMovingSpeed;
-        private bool isMoving = false;
-
-        public float DefaultBlockSpeed => defaultBLockSpeed;
-        public bool IsMoving => isMoving;
-
+        
         void Start()
         {
             InitGame();
@@ -43,7 +32,6 @@ namespace Channel3.RetroRaid.LevelBlock
             startBlock.transform.position = Vector3.zero;
             startBlock.gameObject.SetActive(true);
             checkpointBlock.gameObject.SetActive(false);
-            currentBlkMovingSpeed = defaultBLockSpeed;
             
             currentBlocks.Add(startBlock);
 
@@ -53,17 +41,8 @@ namespace Channel3.RetroRaid.LevelBlock
             }
         }
 
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Return))
-                isMoving = !isMoving;
-        }
-
         private void FixedUpdate()
         {
-            if (!isMoving)
-                currentBlkMovingSpeed = 0;
-            
             MoveBlocks();
             if(currentBlocks[0].transform.position.z < -BLOCK_SIZE_LIMIT)
                 RemoveFirstAddLast();
@@ -72,7 +51,7 @@ namespace Channel3.RetroRaid.LevelBlock
         private void MoveBlocks()
         {
             for (int i = 0; i < currentBlocks.Count; i++)
-                currentBlocks[i].velocity = Vector3.back * currentBlkMovingSpeed;
+                currentBlocks[i].velocity = Vector3.back * GameSpeedManager.Instance.CurrentSpeed;
         }
 
         private void RemoveFirstAddLast()
@@ -87,34 +66,10 @@ namespace Channel3.RetroRaid.LevelBlock
             Rigidbody newBlock = Instantiate(easyBlocks[Random.Range(0, easyBlocks.Length)], Vector3.forward * position, Quaternion.identity);
             currentBlocks.Add(newBlock);
         }
-        
-        public void SpeedUpBLocks()
-        {
-            if(!isMoving)
-                return;
-
-            currentBlkMovingSpeed = (1f + maxVertSpeedMult) * defaultBLockSpeed;
-        }
-
-        public void SpeedDownBlocks()
-        {
-            if(!isMoving)
-                return;
-            
-            currentBlkMovingSpeed = (1f - minVertSpeedMult) * defaultBLockSpeed;
-        }
-
-        public void SetDefaultBlockSpeed()
-        {
-            if (!isMoving)
-                currentBlkMovingSpeed = 0;
-            else
-                currentBlkMovingSpeed = defaultBLockSpeed;
-        }
 
         public void StopMoving()
         {
-            isMoving = false;
+            GameManager.Instance.IsPaused = false;
         }
     }
 }

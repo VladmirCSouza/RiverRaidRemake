@@ -1,5 +1,4 @@
-﻿using System;
-using Channel3.RetroRaid.LevelBlock;
+﻿using Channel3.CoreManagers;
 using UnityEngine;
 
 namespace Channel3.RetroRaid.Player
@@ -7,6 +6,11 @@ namespace Channel3.RetroRaid.Player
     public class PlayerController : MonoBehaviour
     {
         [SerializeField] private float maxFuel;
+        [SerializeField] private float addFuel = 10;
+        [SerializeField] private float normalFuelUse = 1;
+        [SerializeField] private float maxSpeedFuelUsePerc = 1.25f;
+        [SerializeField] private float lowSpeedFuelUsePerc = 0.8f;
+        
         [SerializeField] private float hSpeed = 10f;
         [Space]
         [SerializeField] private GameObject explosion;
@@ -24,15 +28,13 @@ namespace Channel3.RetroRaid.Player
 
         private void Update()
         {
-            //TODO: Trocar pelo GameManager.Instance.Paused quando fizer
-            if(!LevelBlockManager.Instance.IsMoving)
+            if(GameManager.Instance.IsPaused)
                 return;
             
             if(Input.GetKeyDown(KeyCode.Space))
                 Shoot();
             
             UpdateHorizontalSpeed();
-            UpdateVerticalSpeed();
         }
 
         private void FixedUpdate()
@@ -45,18 +47,6 @@ namespace Channel3.RetroRaid.Player
             currentSpeed = hSpeed * Input.GetAxis("Horizontal");
         }
 
-        private void UpdateVerticalSpeed()
-        {
-            float v = Input.GetAxisRaw("Vertical");
-            
-            if(v > 0)
-                LevelBlockManager.Instance.SpeedUpBLocks();
-            else if(v < 0)
-                LevelBlockManager.Instance.SpeedDownBlocks();
-            else
-                LevelBlockManager.Instance.SetDefaultBlockSpeed();
-        }
-
         private void Move()
         {
             rb.velocity = new Vector3(currentSpeed, 0, 0);
@@ -65,8 +55,14 @@ namespace Channel3.RetroRaid.Player
         private void Shoot()
         {
             var bullet = Instantiate(bulletPrefab, gunPoint.position, Quaternion.identity);
-            float bulletSpeed = (1f + bulletSpeedPerc) * LevelBlockManager.Instance.DefaultBlockSpeed;
+            float bulletSpeed = (1f + bulletSpeedPerc) * GameSpeedManager.Instance.CurrentSpeed;
             bullet.velocity = Vector3.forward * bulletSpeed;
+            Debug.Log($"SHOOT {bullet.velocity}");
+        }
+
+        private void FuelControl()
+        {
+            
         }
 
         private void OnCollisionEnter(Collision collision)
@@ -75,8 +71,8 @@ namespace Channel3.RetroRaid.Player
             {
                 explosion.transform.SetParent(null);
                 explosion.SetActive(true);
-                LevelBlockManager.Instance.StopMoving();
                 gameObject.SetActive(false);
+                GameManager.Instance.IsPaused = true;
             }
         }
     }

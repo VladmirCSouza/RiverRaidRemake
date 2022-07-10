@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Channel3.RetroRaid.LevelBlock
+namespace Channel3.CoreManagers
 {
     public class Block : MonoBehaviour
     {
