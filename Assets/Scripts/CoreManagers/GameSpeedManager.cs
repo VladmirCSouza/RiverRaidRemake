@@ -13,7 +13,9 @@ namespace Channel3.CoreManagers
         public float DefaultSpeed => defaultSpeed;
         private float currSpeed;
         public float CurrentSpeed => currSpeed;
-        
+
+        public WorldSpeed Speed { get; set; }
+
         private void Start()
         {
             currSpeed = defaultSpeed;
@@ -35,25 +37,28 @@ namespace Channel3.CoreManagers
             float v = Input.GetAxisRaw("Vertical");
             
             if(v > 0)
-                SpeedUpBLocks();
+                SpeedUp();
             else if(v < 0)
-                SpeedDownBlocks();
+                SpeedDown();
             else
-                SetDefaultBlockSpeed();
+                SetDefaultSpeed();
         }
         
-        public void SpeedUpBLocks()
+        private void SpeedUp()
         {
+            Speed = WorldSpeed.Fast;
             currSpeed = (1f + maxVertSpeedMult) * defaultSpeed;
         }
 
-        public void SpeedDownBlocks()
+        private void SpeedDown()
         {
+            Speed = WorldSpeed.Slow;
             currSpeed = (1f - minVertSpeedMult) * defaultSpeed;
         }
 
-        public void SetDefaultBlockSpeed()
+        private void SetDefaultSpeed()
         {
+            Speed = WorldSpeed.Default;
             currSpeed = defaultSpeed;
         }
     }

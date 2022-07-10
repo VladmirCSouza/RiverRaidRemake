@@ -66,10 +66,5 @@ namespace Channel3.CoreManagers
             Rigidbody newBlock = Instantiate(easyBlocks[Random.Range(0, easyBlocks.Length)], Vector3.forward * position, Quaternion.identity);
             currentBlocks.Add(newBlock);
         }
-
-        public void StopMoving()
-        {
-            GameManager.Instance.IsPaused = false;
-        }
     }
 }

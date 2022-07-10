@@ -1096,6 +1096,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Start
       objectReference: {fileID: 0}
+    - target: {fileID: 4616728931963910624, guid: 635be42e1dcde014a90f13a59c3e5c25,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4616728931964134788, guid: 635be42e1dcde014a90f13a59c3e5c25,
         type: 3}
       propertyPath: m_RootOrder
@@ -2098,6 +2103,7 @@ MonoBehaviour:
   - {fileID: -390503271433687776, guid: f6d9c2708400cd945ab2daf0ea0b007e, type: 3}
   - {fileID: 5735329988816233843, guid: e13471acfc6aa4d45a4e90856354087e, type: 3}
   - {fileID: 7734516080166696670, guid: 3476719445d7bf14b94dfc28288d6d09, type: 3}
+  - {fileID: -390503271433687776, guid: 62748be777ddb1e448d115b843206a41, type: 3}
   mediumBlocks:
   - {fileID: 8069227961190654464, guid: 44fe61571e2ced44d892b807caf9638b, type: 3}
   - {fileID: 2107177607972007187, guid: 6f17c1f5c4c813a4c902b0e616678fc8, type: 3}
@@ -2265,6 +2271,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8243617678531641762, guid: 99b9ae6cc5c8ea04eb179509842e16ff,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 56
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99b9ae6cc5c8ea04eb179509842e16ff, type: 3}
