@@ -6,7 +6,7 @@ SpriteAtlas:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: UI
+  m_Name: UIGeneric
   m_EditorData:
     serializedVersion: 2
     textureSettings:
@@ -412,5 +412,5 @@ SpriteAtlas:
   - fightJoy_23
   - save
   m_RenderDataMap: {}
-  m_Tag: UI
+  m_Tag: UI-Generic
   m_IsVariant: 0
