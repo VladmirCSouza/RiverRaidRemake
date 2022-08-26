@@ -9,9 +9,9 @@ namespace Channel3.RetroRaid.Player
     {
         [SerializeField] private float maxFuel = 1000;
         [SerializeField] private float addFuel = 10;
-        [SerializeField] private float defaultFuelUse = 1;
-        [SerializeField] private float maxSpeedFuelUsePerc = 1.25f;
-        [SerializeField] private float lowSpeedFuelUsePerc = 0.8f;
+        [SerializeField] private float defaultFuelUse = 0.25f;
+        [SerializeField] private float maxSpeedFuelUsePerc = 2f;
+        [SerializeField] private float lowSpeedFuelUsePerc = 0.5f;
         
         [Space]
         [SerializeField] private float hSpeed = 10f;
@@ -27,6 +27,7 @@ namespace Channel3.RetroRaid.Player
         private float currentSpeed;
         private float cachedSpeed;
         private float currentFuel;
+        public float CurrentFuel => currentFuel;
         
         private bool isAddingFuel = false;
         private bool isOutOfFuel = false;
@@ -130,10 +131,10 @@ namespace Channel3.RetroRaid.Player
             switch (GameSpeedManager.Instance.Speed)
             {
                 case WorldSpeed.Slow:
-                    fuelSub = lowSpeedFuelUsePerc;
+                    fuelSub = defaultFuelUse * lowSpeedFuelUsePerc;
                     break;
                 case WorldSpeed.Fast:
-                    fuelSub = maxSpeedFuelUsePerc;
+                    fuelSub = defaultFuelUse * maxSpeedFuelUsePerc;
                     break;
                 case WorldSpeed.Default:
                 default:

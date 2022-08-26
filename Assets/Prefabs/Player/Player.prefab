@@ -83,6 +83,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4955241164624894a1e33912c84fef73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxFuel: 1000
+  addFuel: 10
+  defaultFuelUse: 0.25
+  maxSpeedFuelUsePerc: 2
+  lowSpeedFuelUsePerc: 0.5
   hSpeed: 50
   explosion: {fileID: 1242041471025558393}
   gunPoint: {fileID: 4950366047432712441}
