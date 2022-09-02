@@ -44,5 +44,5 @@ SpriteAtlas:
   - fuelScale
   - fuelMeter
   m_RenderDataMap: {}
-  m_Tag: Ingame
+  m_Tag: InGame
   m_IsVariant: 0

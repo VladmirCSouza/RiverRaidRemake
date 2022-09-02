@@ -1015,10 +1015,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 294647959650573221, guid: 635be42e1dcde014a90f13a59c3e5c25,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4616728931963910624, guid: 635be42e1dcde014a90f13a59c3e5c25,
         type: 3}
       propertyPath: m_Name
-      value: Start
+      value: StartBlock
       objectReference: {fileID: 0}
     - target: {fileID: 4616728931963910624, guid: 635be42e1dcde014a90f13a59c3e5c25,
         type: 3}
@@ -1078,6 +1083,36 @@ PrefabInstance:
     - target: {fileID: 4616728931964134788, guid: 635be42e1dcde014a90f13a59c3e5c25,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5889025146927150082, guid: 635be42e1dcde014a90f13a59c3e5c25,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7469986343079662753, guid: 635be42e1dcde014a90f13a59c3e5c25,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8667861235914921748, guid: 635be42e1dcde014a90f13a59c3e5c25,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8786778150663358390, guid: 635be42e1dcde014a90f13a59c3e5c25,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8893278057840717844, guid: 635be42e1dcde014a90f13a59c3e5c25,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8901668066027343521, guid: 635be42e1dcde014a90f13a59c3e5c25,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2102,23 +2137,16 @@ MonoBehaviour:
   startBlock: {fileID: 541158490}
   checkpointBlock: {fileID: 312986804}
   easyBlocks:
-  - {fileID: 813315403468255424, guid: 4d4268fd8ab769d4baabe59804c32ab7, type: 3}
-  - {fileID: -5669873991747793366, guid: c9292037ff3ed834fa53acef42d3c028, type: 3}
-  - {fileID: -390503271433687776, guid: f6d9c2708400cd945ab2daf0ea0b007e, type: 3}
-  - {fileID: 5735329988816233843, guid: e13471acfc6aa4d45a4e90856354087e, type: 3}
-  - {fileID: 7734516080166696670, guid: 3476719445d7bf14b94dfc28288d6d09, type: 3}
-  - {fileID: -390503271433687776, guid: 62748be777ddb1e448d115b843206a41, type: 3}
-  mediumBlocks:
-  - {fileID: 8069227961190654464, guid: 44fe61571e2ced44d892b807caf9638b, type: 3}
-  - {fileID: 2107177607972007187, guid: 6f17c1f5c4c813a4c902b0e616678fc8, type: 3}
-  - {fileID: -8648947898454824313, guid: db4feff6cb095b348913afd556369a6a, type: 3}
-  hardBlocks:
-  - {fileID: 4461749172684809049, guid: 4170e608c665c144f85b8b6236e0f443, type: 3}
-  - {fileID: -3466504105323370255, guid: 6eb870f976b5b764e8a042a71aae81e3, type: 3}
-  - {fileID: 5576687174802537328, guid: 29faaa2b131205244a5d3bedab6df342, type: 3}
-  - {fileID: 8187446595711294030, guid: ecd5a548baa26244492e97549cc6976b, type: 3}
-  - {fileID: 4799140340982519956, guid: a39f97344f8f1024e877dcff8e074fc4, type: 3}
-  blockInstanceLimit: 6
+  - {fileID: 1450325315484765338, guid: 4d4268fd8ab769d4baabe59804c32ab7, type: 3}
+  - {fileID: 326991977745027307, guid: c9292037ff3ed834fa53acef42d3c028, type: 3}
+  - {fileID: -380001865034207657, guid: f6d9c2708400cd945ab2daf0ea0b007e, type: 3}
+  - {fileID: 319094143936619227, guid: e13471acfc6aa4d45a4e90856354087e, type: 3}
+  - {fileID: -1655204528461196374, guid: 3476719445d7bf14b94dfc28288d6d09, type: 3}
+  - {fileID: -1857983000316695239, guid: 62748be777ddb1e448d115b843206a41, type: 3}
+  mediumBlocks: []
+  hardBlocks: []
+  fuelTankPrefab: {fileID: 100000, guid: 9a005c20ea959a5438ad1d3e2bcb0ec7, type: 3}
+  blockInstancesLimit: 6
 --- !u!1 &1536571190
 GameObject:
   m_ObjectHideFlags: 0

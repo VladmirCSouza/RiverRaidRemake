@@ -412,5 +412,5 @@ SpriteAtlas:
   - fightJoy_23
   - save
   m_RenderDataMap: {}
-  m_Tag: UI-Generic
+  m_Tag: UIGeneric
   m_IsVariant: 0
