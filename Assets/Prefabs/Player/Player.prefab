@@ -84,7 +84,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxFuel: 1000
-  addFuel: 10
+  defaultFuelRecharge: 10
   defaultFuelUse: 0.25
   maxSpeedFuelUsePerc: 2
   lowSpeedFuelUsePerc: 0.5

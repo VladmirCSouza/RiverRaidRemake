@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using Channel3.CoreManagers;
+﻿using Channel3.CoreManagers;
 using UnityEngine;
 
 namespace Channel3.RetroRaid.Player
@@ -8,7 +6,7 @@ namespace Channel3.RetroRaid.Player
     public class PlayerController : MonoBehaviour
     {
         [SerializeField] private float maxFuel = 1000;
-        [SerializeField] private float addFuel = 10;
+        [SerializeField] private float defaultFuelRecharge = 10f;
         [SerializeField] private float defaultFuelUse = 0.25f;
         [SerializeField] private float maxSpeedFuelUsePerc = 2f;
         [SerializeField] private float lowSpeedFuelUsePerc = 0.5f;
@@ -114,20 +112,21 @@ namespace Channel3.RetroRaid.Player
 
             if (currentFuel <= 0)
             {
-                rb.useGravity = true;
-                isOutOfFuel = true;
+                // rb.useGravity = true;
+                // isOutOfFuel = true;
             }
         }
 
         private void FuelAdding()
         {
             if(currentFuel < maxFuel)
-                currentFuel += addFuel;
+                currentFuel += defaultFuelRecharge;
         }
 
         private void FuelConsumption()
         {
             float fuelSub = 0;
+            
             switch (GameSpeedManager.Instance.Speed)
             {
                 case WorldSpeed.Slow:
@@ -141,7 +140,7 @@ namespace Channel3.RetroRaid.Player
                     fuelSub = defaultFuelUse;
                     break;
             }
-
+            
             currentFuel -= fuelSub;
         }
 
@@ -159,6 +158,18 @@ namespace Channel3.RetroRaid.Player
             explosion.SetActive(true);
             gameObject.SetActive(false);
             GameManager.Instance.IsPaused = true;
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("fuel"))
+                isAddingFuel = true;
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.CompareTag("fuel"))
+                isAddingFuel = false;
         }
     }
 }
