@@ -28,6 +28,7 @@ namespace Channel3.CoreManagers
         private List<BlocksController> currentBlocks = new(10);
 
         private int blockSpawnCount = 0;
+        private string previousInstantiatedBlockName;
         
         void Start()
         {
@@ -42,7 +43,8 @@ namespace Channel3.CoreManagers
             
             currentBlocks.Add(startBlock);
             blockSpawnCount++;
-
+            previousInstantiatedBlockName = startBlock.name;
+            
             for (int i = 1; i <= blockInstancesLimit; i++)
             {
                 InstantiateBlock(i * BLOCK_SIZE_LIMIT);
@@ -71,7 +73,7 @@ namespace Channel3.CoreManagers
 
         private void InstantiateBlock(int position)
         {
-            BlocksController newBlock = Instantiate(easyBlocks[Random.Range(0, easyBlocks.Length)], Vector3.forward * position, Quaternion.identity);
+            BlocksController newBlock = Instantiate(GetBlockToInstantiate(), Vector3.forward * position, Quaternion.identity);
             currentBlocks.Add(newBlock);
             
             blockSpawnCount++;
@@ -79,6 +81,16 @@ namespace Channel3.CoreManagers
                 blockSpawnCount = 1;
             
             InstantiateFuel(newBlock);
+        }
+
+        private BlocksController GetBlockToInstantiate()
+        {
+            BlocksController newBlock = null;
+            
+            while (newBlock == null || newBlock.name == previousInstantiatedBlockName)
+                newBlock = easyBlocks[Random.Range(0, easyBlocks.Length)];
+
+            return newBlock;
         }
 
         private void InstantiateFuel(BlocksController newBlock)

@@ -100,7 +100,6 @@ namespace Channel3.RetroRaid.Player
             var bullet = Instantiate(bulletPrefab, gunPoint.position, Quaternion.identity);
             float bulletSpeed = (1f + bulletSpeedPerc) * GameSpeedManager.Instance.CurrentSpeed;
             bullet.velocity = Vector3.forward * bulletSpeed;
-            Debug.Log($"SHOOT {bullet.velocity}");
         }
 
         private void FuelControl()
@@ -110,10 +109,12 @@ namespace Channel3.RetroRaid.Player
             else 
                 FuelConsumption();
 
+            isAddingFuel = false;
+
             if (currentFuel <= 0)
             {
-                // rb.useGravity = true;
-                // isOutOfFuel = true;
+                rb.useGravity = true;
+                isOutOfFuel = true;
             }
         }
 
@@ -144,6 +145,14 @@ namespace Channel3.RetroRaid.Player
             currentFuel -= fuelSub;
         }
 
+        private void ExplodePlayer()
+        {
+            explosion.transform.SetParent(null);
+            explosion.SetActive(true);
+            gameObject.SetActive(false);
+            GameManager.Instance.IsPaused = true;
+        }
+        
         private void OnCollisionEnter(Collision collision)
         {
             if (collision.gameObject.CompareTag("wall") || collision.gameObject.CompareTag("enemy") || collision.gameObject.CompareTag("bridge"))
@@ -152,24 +161,10 @@ namespace Channel3.RetroRaid.Player
             }
         }
 
-        private void ExplodePlayer()
-        {
-            explosion.transform.SetParent(null);
-            explosion.SetActive(true);
-            gameObject.SetActive(false);
-            GameManager.Instance.IsPaused = true;
-        }
-
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerStay(Collider other)
         {
             if (other.CompareTag("fuel"))
                 isAddingFuel = true;
-        }
-
-        private void OnTriggerExit(Collider other)
-        {
-            if (other.CompareTag("fuel"))
-                isAddingFuel = false;
         }
     }
 }

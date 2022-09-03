@@ -11,6 +11,7 @@ namespace Channel3.RetroRaid.Player
         [SerializeField] private Transform waterExplosion;
         [SerializeField] private Transform wallExplosion;
         [SerializeField] private Transform enemyExplosion;
+        [SerializeField] private Transform fuelTankExplosion;
         
         private Rigidbody rb;
         private float startPosition;
@@ -21,7 +22,8 @@ namespace Channel3.RetroRaid.Player
         {
             water,
             wall,
-            enemy
+            enemy,
+            fuelTank
         }
 
         private void Start()
@@ -79,6 +81,12 @@ namespace Channel3.RetroRaid.Player
             }
         }
 
+        private void OnTriggerEnter(Collider other)
+        {
+            if(other.CompareTag("fuel"))
+                DestroyBullet(ExplosionReason.fuelTank);
+        }
+
         private void DestroyBullet(ExplosionReason reason)
         {
             Transform explosion = null;
@@ -90,6 +98,9 @@ namespace Channel3.RetroRaid.Player
                     break;
                 case ExplosionReason.enemy:
                     explosion = enemyExplosion;
+                    break;
+                case ExplosionReason.fuelTank:
+                    explosion = fuelTankExplosion;
                     break;
                 case ExplosionReason.water:
                 default:
